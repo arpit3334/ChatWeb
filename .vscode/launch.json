@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "chrome",
+            "name": "http://c:\\chatApp\\client.js",
+            
+            "url": "http://c:\\chatApp\\client.js"
+        }
+    ]
+}
