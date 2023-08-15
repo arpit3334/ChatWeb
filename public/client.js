@@ -22,7 +22,9 @@ const append = (message, position)=>{
     sound.play();
 }
 }
-
+function scrollToBottom(){
+    messageContainer.scrollTop = messageContainer.scrollHeight
+}
 const joining = (message, position)=>{
     const messageElement = document.createElement('div');
     messageElement.innerText = message;
@@ -43,12 +45,14 @@ socket.on('connect', welcome=>{
     joining(`You: ${UserName}` , 'right')
 })
 socket.on('user-joined', UserName=>{
-    append(`${UserName} joined the chat`, 'left')
+    append(`${UserName} joined the chat`, 'left');
+    scrollToBottom();
 })
 
 socket.on('receive',data=>{
     
-    append(` ${data.UserName}: ${data.message} `, 'left')
+    append(` ${data.UserName}: ${data.message} `, 'left');
+    scrollToBottom();
 })
 socket.on('leave', name =>{
     append(` ${UserName} left the chat`, 'left');
@@ -60,6 +64,7 @@ form.addEventListener('submit', (e)=>{
     
     socket.emit('send',message);
     
-    messageInput.value=''
+    messageInput.value='';
+    scrollToBottom();
 })
 
